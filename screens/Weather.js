@@ -74,6 +74,7 @@ const Weather=({navigation:{setOptions}})=>{
   
   const getWeather = async () =>{
     const {granted} = await Location.requestForegroundPermissionsAsync();
+    
     const{
       coords:{latitude,longitude}
     }=await Location.getCurrentPositionAsync({accuracy:5});

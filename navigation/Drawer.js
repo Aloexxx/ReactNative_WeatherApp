@@ -12,8 +12,6 @@ const DrawerNavigator = () =>{
 
     AsyncStorage.getItem("ISLOGIN").then(a=>setSavedLogin(a));
     AsyncStorage.getItem("USERNAME").then(a=>setSavedUserName(a));
-    
-    console.log(savedLogin)
 
     return(
         <Drawer.Navigator screenOptions={{headerShown:false}}>

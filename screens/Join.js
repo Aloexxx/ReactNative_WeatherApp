@@ -14,6 +14,7 @@ const Join = () =>{
             AsyncStorage.setItem("USERNAME",nameText),
             AsyncStorage.setItem("USERID",idText),
             AsyncStorage.setItem("USERPS",passwordText),
+            AsyncStorage.setItem("TIME",String(new Date())),
             AsyncStorage.getItem("USERNAME").then(a=>console.log(a)),
             navigation.navigate("Drawer",{
                 screen:"Login",
