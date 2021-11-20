@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from "react";
-import {FlatList} from "react-native";
+import {FlatList,StyleSheet} from "react-native";
 import *as Location from "expo-location";
 import {StatusBar} from "expo-status-bar";
 import {Fontisto, Ionicons} from "@expo/vector-icons";
@@ -17,14 +17,13 @@ const icons={
   Drizzle:"rain",
   Thunderstorm:"lightning",
 };
+const Container = styled.View`
+`;
 
 const ListButton = styled.TouchableOpacity`
   padding-left: 3px;
 `;
 
-const Container = styled.View`
-
-`;
 
 const CityNameBox = styled.View`
   flex-direction: row;
@@ -35,23 +34,20 @@ const CityNameBox = styled.View`
 const CityName = styled.Text`
   font-size: 26px;
 `;
-const CityNameChangeBtn = styled.Text`
-  position: absolute;
-  right:20px;
-`;
 
 const WeatherComponentBox = styled.TouchableOpacity`
-  border: black solid 2px;
+  background-color:#f5f5de;
+  border:solid 0.15px #b7b7b7;
   border-radius: 9px;
   align-items: center;
-  margin-bottom:7px;
-  margin-left: 3px;
-  margin-right: 3px;
+  margin-bottom:8px;
+  margin-left: 8px;
+  margin-right: 8px;
 `;
 
 const DateText = styled.Text`
   justify-content: center;
-  font-size: 16px;
+  font-size: 20px;
   padding-top: 8px;
 `;
 const WeatherComponent = styled.View`
@@ -64,8 +60,16 @@ const TemparatureComponent = styled.View`
   
 `;
 const TemparatureText = styled.Text`
-  font-size: 20px;
+  font-size: 17px;
+  color: #7c7c7c;
 `;
+const styles = StyleSheet.create({
+  WeatherComponent:{
+    elevation: 7,
+    borderColor:"black",
+    borderWidth:0.6,
+  }
+});
 
 const Weather=({navigation:{setOptions}})=>{
   const [city,setCity] = useState("Loading...");
@@ -134,7 +138,7 @@ const Weather=({navigation:{setOptions}})=>{
             </>
           }
           renderItem={({item,index})=>(
-            <WeatherComponentBox onPress={index===1||index===0?()=>goToDetail(index,(item.temp.max),(item.temp.min),(item.temp.eve)):null}>
+            <WeatherComponentBox disabled={index===1||index===0?false:true} style={index===1||index===0?styles.WeatherComponent:null} onPress={()=>goToDetail(index,(item.temp.max),(item.temp.min),(item.temp.eve))}>
               <DateText>{timeSave(index).getMonth()+1}월{timeSave(index).getDate()}일</DateText>
               <WeatherComponent>
                 <TemparatureComponent>

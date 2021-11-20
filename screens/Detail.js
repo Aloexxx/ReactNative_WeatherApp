@@ -21,15 +21,15 @@ const DayDetail = styled.View`
     justify-content: center;
     align-items:center;
     height: 100%;
-    background-color:white;
+    background-color:#f5f5eb;
 `;
 const TempBox = styled.View`
     flex-direction: column;
-    margin-vertical:20px;
+    margin:40px;
 `;
 const TempText = styled.Text`
     font-size: 18px;
-    color:blue;
+    color:#858585;
     padding:5px;
     font-weight: 300;
 `;
@@ -68,15 +68,16 @@ const Detail = ({navigation:{setOptions},route:{params}})=>{
         showIconBottom: true,
 
         fontSizeTop: 20,
-        fontTopColor:"#3c40c6",
+        fontTopColor:"red",
         fontSizeBottom: 20,
         // marginTop:SCREEN_HEIGHT/3.4,
         marginBottom:SCREEN_HEIGHT/6,
         iconBottomColor: "black",
-        markerSize:7,
-        markerFillColor:"#487eb0",
-        lineColor:"#487eb0",
-        vlineColor:"#487eb0",
+        markerSize:6,
+        markerFillColor:"#409fff",
+        lineColor:"#d9d9d9",
+        vlineColor:"#d9d9d9",
+        
     };
     
     useEffect(()=>{
@@ -90,10 +91,6 @@ const Detail = ({navigation:{setOptions},route:{params}})=>{
             <TempBox>
                 <View>
                     <TempText>평균 기온 : {params.eve}</TempText>
-                </View>
-                <View>
-                    <TempText>최고 기온 : {params.max}</TempText>
-                    <TempText>최저 기온 : {params.min}</TempText>
                 </View>
             </TempBox>
             <WeatherChart data={Data} settings={Settings} />

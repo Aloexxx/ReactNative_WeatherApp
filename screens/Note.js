@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
-import { Button, FlatList, Text ,TextInput,TouchableOpacityBase,View} from "react-native";
+import { Button, FlatList, Text ,TextInput,View} from "react-native";
+import {TouchableOpacity} from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useQuery } from "react-query";
@@ -23,14 +23,15 @@ const Container = styled.View`
     align-items: center;
 `;
 const GoLoginBtn = styled.Text`
-    font-size: 20px;
+    font-size: 25px;
 `;
 const NoteList = styled.View`
-    border: solid black 1px;
     border-radius: 8px;
     flex-direction: column;
     width: 80%;
     height:85%;
+    background-color:#f4f4d7;
+    elevation:2.3;
 `;
 const WeatherBox = styled.View`
     flex-direction: row;
@@ -44,16 +45,11 @@ const TextInputBox = styled.View`
     height: 100%;
 `;
 
-const TextBox = styled.TouchableOpacity`
-`;
 const SaveText = styled.Text`
     font-size: 17px;
-    border:black solid 1px;
-    border-radius: 7px;
-    padding:4px;
-    padding-left:8px;
-    padding-right:8px;
-    margin-bottom: -6px;
+    padding: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
 `;
 
 const Note = ({navigation:{setOptions}}) =>{
@@ -95,23 +91,23 @@ const Note = ({navigation:{setOptions}}) =>{
             savedLogin==="true"?
                 <NoteList>
                     <WeatherBox>
-                        <Text>{timeSave(0).getMonth()+1}월{timeSave(0).getDate()}일</Text>
+                        <Text style={{color:"#9a9a9a"}}>{timeSave(0).getMonth()+1}월{timeSave(0).getDate()}일</Text>
                         <Fontisto
                             name={icons[days[0].weather[0].main]}
                             size={33}
-                            color="black"
+                            color="#9a9a9a"
                         />
                     </WeatherBox>
                     <TextInputBox>
                         <TextInput multiline value={changeText} placeholder="writing" onChangeText={onChangeText}/>
-                        <TextBox onPress={onEndEditing}>
+                        <TouchableOpacity onPress={onEndEditing}>
                             <SaveText>save</SaveText>
-                        </TextBox>
+                        </TouchableOpacity>
                     </TextInputBox>
                 </NoteList>
                 :
-                <TouchableOpacity onPress={()=>navigation.navigate(savedLogin==="true"?"Weather":"Login")}>
-                    <GoLoginBtn>go to Login</GoLoginBtn>
+                <TouchableOpacity style={{justifyContent:"center",alignItems:"center",height:"100%"} } onPress={()=>navigation.navigate(savedLogin==="true"?"Weather":"Login")}>
+                    <GoLoginBtn>Go To Login</GoLoginBtn>
                 </TouchableOpacity> 
             }
         </Container>

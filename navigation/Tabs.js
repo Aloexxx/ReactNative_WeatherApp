@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 const Tabs = () =>{
     return(
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={{tabBarActiveTintColor:"#000000",}}>
             <Tab.Screen name="Weather" component={Weather} options={{
                 tabBarIcon:({focused,color,size})=>{
                     return <MaterialCommunityIcons name="weather-cloudy" color={color} size={size}/>
@@ -17,7 +17,7 @@ const Tabs = () =>{
             }}/>
             <Tab.Screen name="Note" component={Note} options={{
                 tabBarIcon:({focused,color,size})=>{
-                    return <MaterialCommunityIcons name="face-profile" color={color} size={size}/>
+                    return <MaterialCommunityIcons name="note-outline" color={color} size={size}/>
                 }
             }}/>
         </Tab.Navigator>
